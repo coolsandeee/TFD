@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: Send Event Notification API 
+  description: This API lists the endpoint to send notification to registered users of an event
+  version: 1.0.0
+servers:
+  - url: https://notification-for-reg-users-dot-folk-dev-com-db.uc.r.appspot.com
+    description: GAE
+  - url: http://localhost:4445
+    description: Local server   
+paths:
+  /sendNotifToRegisteredUsers:
+    post:
+      summary: Returns a list of registered user docIds
+      requestBody:
+        description: To retrieve users docIds registered for this event
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pid'
+      responses:
+        '200':    # status code
+          description: Returns a list of registered user docIds
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registeredUsersDocIds'
+        '500':    # status code
+          description: An error has occurred. Refer to the logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/failure'
+components:
+  schemas:
+    pid:
+      type: object
+      required:
+         - pid
+      properties:
+        pid:
+          type: string
+          example: Enter a valid pid here
+    registeredUsersDocIds:
+      type: object
+      properties:
+        MESSAGE:
+          type: string
+          example: Success
+        STATUS:
+          type: string
+          example: OK
+        regUsersDocIds:
+          type: array
+          example: ["This is one doc Id", "This is another doc Id"]
+    success:
+      type: object
+      properties:
+        MESSAGE:
+          type: string
+          example: Success
+        STATUS:
+          type: string
+          example: OK
+    failure:
+      type: object
+      properties:
+        MESSAGE:
+          type: string
+          example: Error
+        STATUS:
+          type: string
+          example: Failed

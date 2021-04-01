@@ -1,0 +1,2 @@
+service: notification-for-reg-users
+runtime: python39
