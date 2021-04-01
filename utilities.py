@@ -66,7 +66,7 @@ def sendNotifToRegisteredUsersUtility():
     for regUser in regUsers:
         regUsersDocIds.append(regUser['doc_id'])
 
-    push_service = FCMNotification(api_key=fcm.fcm_api_key, proxy_dict=None)
+    # push_service = FCMNotification(api_key=fcm.fcm_api_key, proxy_dict=None)
     # to get the token, data_message
     # token is the fcm_token_id and data_message is the json format of the message
     # notifyEvents = push_service.notify_multiple_devices(registration_ids=token, data_message=data_message,extra_notification_kwargs=None)
